@@ -17,8 +17,13 @@ class TestConstant extends AnyFunSuite {
     isabelleProcess.extractConstants(os.Path("/home/xiaokun/opt/Isabelle2023/src/HOL/Num.thy"))
   }
 
-  test("test isa-utils extract_constants") {
+  test("test isa-utils extract_constants Main") {
     val args = Array("extract_constants", "HOL", isaHome, "/home/xiaokun/opt/Isabelle2023/src/HOL/Main.thy")
+    IsaUtils.main(args)
+  }
+
+  test("test isa-utils extract_constants HOL-Analysis") {
+    val args = Array("extract_constants", "HOL-Analysis", isaHome, "/home/xiaokun/opt/Isabelle2023/src/HOL/Analysis/Abstract_Euclidean_Space.thy")
     IsaUtils.main(args)
   }
 }

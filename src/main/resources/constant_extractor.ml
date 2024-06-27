@@ -55,7 +55,7 @@ fun get_def_const (Const(\<^const_name>\<open>Pure.conjunction\<close>, _) $ A $
   | get_def_const (Const("HOL.Trueprop", _) $ X) = get_def_const X
   | get_def_const (Const("HOL.eq", _) $ X $ _) = head_consts X
   | get_def_const (Const("HOL.iff", _) $ X $ _) = head_consts X
-  | get_def_const (Const(\<^const_name>\<open>Pure.eq\<close>, _) $ X $ _) = get_def_const X
+  | get_def_const (Const(\<^const_name>\<open>Pure.eq\<close>, _) $ X $ _) = head_consts X
   | get_def_const (Const(\<^const_name>\<open>Pure.imp\<close>, _) $ _ $ X) = get_def_const X
   | get_def_const (Const(\<^const_name>\<open>Pure.all\<close>, _) $ Abs (_, _, X)) = get_def_const X
   | get_def_const _ = []
@@ -68,7 +68,7 @@ fun trim_term (Const("_type_constraint_", _) $ X) = trim_term X
   | trim_term X = X
 
 fun trim_makrup msg =
-  let fun auto acc [] = []
+  let fun auto _ [] = []
         | auto acc (#"\005" :: L) = auto (not acc) L
         | auto true (x :: L) = x :: auto true L
         | auto false (_ :: L) = auto false L
@@ -553,7 +553,7 @@ fun trim_defele (ConstDef (a,b,nm,deps)) = ConstDef (trim_makrup a, b, nm, deps)
   | trim_defele (Overloading (f1,f2)) = Overloading (f1,f2)
 
 (** Assemble All **)
-
+                  
 val parser = def_parser
           || fun_parser
           || primrec_parser
