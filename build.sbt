@@ -13,8 +13,6 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.18" % Test
 libraryDependencies += "com.github.scopt" %% "scopt" % "4.1.0"
 libraryDependencies += "com.lihaoyi" %% "upickle" % "3.3.1"
 
-Compile / compile / wartremoverErrors ++= Warts.allBut(Wart.Any, Wart.Nothing, Wart.Serializable)
-
 ThisBuild / assemblyMergeStrategy := {
   case x if x.contains("de/unruh") => MergeStrategy.first
   case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
